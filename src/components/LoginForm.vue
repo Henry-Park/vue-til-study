@@ -29,10 +29,11 @@
 </template>
 
 <script>
-import { loginUser } from '@/api/index';
+// import { loginUser } from '@/api/index';
 // import { LoginPageVue } from '../views/LoginPage.vue';
 import { validateEmail } from '@/utils/validation';
 // import routes from '../routes';
+// import { saveAuthToCookie, saveUserToCookie } from '@/utils/cookies';
 export default {
 	data() {
 		return {
@@ -56,12 +57,16 @@ export default {
 					username: this.username,
 					password: this.password,
 				};
-				const { data } = await loginUser(userData);
-				console.log(data.user.username);
-				console.log(data.token);
-				this.$store.commit('setToken', data.token);
-				// 메인 페이지로 이동
-				this.$store.commit('setUsername', data.user.username);
+				await this.$store.dispatch('LOGIN', userData);
+				// const { data } = await loginUser(userData);
+				// console.log(data.user.username);
+				// console.log(data.token);
+				// this.$store.commit('setToken', data.token);
+				// // 메인 페이지로 이동
+				// this.$store.commit('setUsername', data.user.username);
+				// //Cookie에 token과 username을 저장
+				// saveAuthToCookie(data.token);
+				// saveUserToCookie(data.user.username);
 				this.$router.push('/main');
 				// this.logMessage = `${data.user.username} 님 환영합니다`;
 				// this.initForm();
