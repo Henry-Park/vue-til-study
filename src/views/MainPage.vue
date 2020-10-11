@@ -8,6 +8,7 @@
 					v-for="postItem in postItems"
 					:key="postItem._id"
 					:postItem="postItem"
+					@refresh="fetchData"
 				></PostListItem>
 				<!-- <li v-for="postItem in postItems" :key="postItem._id">
 					<div class="post-title">
@@ -45,7 +46,7 @@ export default {
 		};
 	},
 	methods: {
-		async ferchData() {
+		async fetchData() {
 			this.isLoading = true;
 			const { data } = await fetchPosts();
 			this.isLoading = false;
@@ -53,7 +54,7 @@ export default {
 		},
 	},
 	created() {
-		this.ferchData();
+		this.fetchData();
 	},
 };
 </script>
