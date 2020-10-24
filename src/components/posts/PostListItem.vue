@@ -1,19 +1,19 @@
 <template>
-	<ul>
-		<li>
-			<div class="post-title">
-				{{ postItem.title }}
-			</div>
-			<div class="post-contents">
-				{{ postItem.contents }}
-			</div>
-			<div class="post-time">
-				{{ postItem.createdAt }}
-				<i class="icon ion-md-create"></i>
-				<i class="icon ion-md-trash" @click="deleteItem"></i>
-			</div>
-		</li>
-	</ul>
+	<!-- <ul> -->
+	<li>
+		<div class="post-title">
+			{{ postItem.title }}
+		</div>
+		<div class="post-contents">
+			{{ postItem.contents }}
+		</div>
+		<div class="post-time">
+			{{ postItem.createdAt }}
+			<i class="icon ion-md-create" @click="routeEditItem"></i>
+			<i class="icon ion-md-trash" @click="deleteItem"></i>
+		</div>
+	</li>
+	<!-- </ul> -->
 </template>
 
 <script>
@@ -32,7 +32,11 @@ export default {
 				await deletePost(this.postItem._id);
 				this.$emit('refresh');
 			}
-			console.log('deleted');
+			// console.log('deleted');
+		},
+		routeEditItem() {
+			const id = this.postItem._id;
+			this.$router.push(`/post/${id}`);
 		},
 	},
 };
