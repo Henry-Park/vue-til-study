@@ -19,6 +19,7 @@
 					v-bind:disabled="!isUsernameValid || !password"
 					type="submit"
 					class="btn"
+					:ckass="!isUsernameValid || !password ? 'disabled' : null"
 				>
 					로그인
 				</button>
